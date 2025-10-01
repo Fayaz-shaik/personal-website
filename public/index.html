@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ML Engineer Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
+
     <script>
         tailwind.config = {
             theme: {
@@ -42,7 +43,7 @@
                     <a href="#home" class="nav-link text-gray-300 hover:text-blue-accent transition-colors">Home</a>
                     <a href="#about" class="nav-link text-gray-300 hover:text-blue-accent transition-colors">About</a>
                     <a href="#skills" class="nav-link text-gray-300 hover:text-blue-accent transition-colors">Skills</a>
-                    <a href="learn.html" class="nav-link text-gray-300 hover:text-blue-accent transition-colors">Learn</a>
+                    <a href="/learn.html" class="nav-link text-gray-300 hover:text-blue-accent transition-colors">Learn</a>
                     <a href="#projects" class="nav-link text-gray-300 hover:text-blue-accent transition-colors">Projects</a>
                     <a href="#contact" class="nav-link text-gray-300 hover:text-blue-accent transition-colors">Contact</a>
                 </div>
@@ -52,6 +53,18 @@
             <button id="mobileMenuBtn" class="md:hidden text-white"> ... </button>
         </div>
     </nav>
+
+    <!-- Add this after your nav bar -->
+    <div id="mobileMenu" class="md:hidden hidden bg-deep-black border-b border-blue-accent/20 pb-4">
+        <div class="flex flex-col space-y-4 px-4">
+            <a href="#home" class="text-white hover:text-blue-accent py-2">Home</a>
+            <a href="#about" class="text-gray-300 hover:text-blue-accent py-2">About</a>
+            <a href="#skills" class="text-gray-300 hover:text-blue-accent py-2">Skills</a>
+            <a href="learn.html" class="text-gray-300 hover:text-blue-accent py-2">Learn</a>
+            <a href="#projects" class="text-gray-300 hover:text-blue-accent py-2">Projects</a>
+            <a href="#contact" class="text-gray-300 hover:text-blue-accent py-2">Contact</a>
+        </div>
+    </div>
 
     <!-- Matrix Background Animation -->
     <canvas id="matrixCanvas" class="matrix-bg"></canvas>
@@ -265,7 +278,8 @@
                         <div class="w-12 h-12 rounded-lg bg-blue-accent/10 flex items-center justify-center mr-4">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                        </div>
+                            </svg>
+                            </div>
                         <h3 class="text-xl font-bold">MLOps</h3>
                     </div>
                     <div class="flex flex-wrap gap-2">
@@ -541,31 +555,27 @@
         // Mobile menu toggle
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-        
+
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
-                
                 const targetId = this.getAttribute('href');
-                if (targetId === '#') {
-                    return;
-                }
-                
+                if (targetId === '#') return;
                 const targetElement = document.querySelector(targetId);
-                
                 if (targetElement) {
                     window.scrollTo({
                         top: targetElement.offsetTop - 80,
                         behavior: 'smooth'
                     });
-                    
                     // Close mobile menu if open
-                    if (!mobileMenu.classList.contains('hidden')) {
+                    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
                         mobileMenu.classList.add('hidden');
                     }
                 }
