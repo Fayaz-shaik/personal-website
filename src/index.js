@@ -9,3 +9,11 @@ root.render(
     <PortfolioWebsite />
   </React.StrictMode>
 );
+// in index.js or serviceWorker.js
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.getRegistrations().then(function(registrations) {
+    for(let registration of registrations) {
+      registration.unregister();
+    }
+  });
+}
