@@ -2,6 +2,7 @@
   "name": "ml-portfolio-dark-3d",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://Fayaz-shaik.github.io/personal-website",
   "dependencies": {
     "autoprefixer": "^10.4.14",
     "framer-motion": "^10.16.3",
